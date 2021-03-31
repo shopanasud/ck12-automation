@@ -204,62 +204,7 @@ class CustomizePage(BasePage):
         new_Title = self.el_get_text(ALGEBRACUS.R1_TITLE_NAME)
         return text == new_Title
     
-    def moveToChap(self):
-        self.el_click(ALGEBRACUS.CHAP1_EXPAND_TOGGLE_HIDDEN)
-        chap1_all_reads = self.el_get_all(ALGEBRACUS.CHAP1_EXPAND_ALL_READS)
-        chap1_before_move_reads = []
-        for reads in chap1_all_reads:
-            chap1_before_move_reads.append(reads.text)
-        print(f'Before Read moved chap1: {chap1_before_move_reads}')
-        time.sleep(2)
-        self.el_click(ALGEBRACUS.CHAP5_EXPAND_TOGGLE)
-        chap5_all_reads = self.el_get_all(ALGEBRACUS.CHAP5_EXPAND_ALL_READS)
-        chap5_before_move_reads = []
-        for reads in chap5_all_reads:
-            chap5_before_move_reads.append(reads.text)
-        print(f'Before Read moved chap5: {chap5_before_move_reads}')
-        time.sleep(2)
-        self.el_click(ALGEBRACUS.CHAP5_EXPAND_TOGGLE_EXPANDED)
-        time.sleep(1)
-        self.el_get(ALGEBRACUS.TOC_TEXT1).location_once_scrolled_into_view
-        time.sleep(2)
-        
-        self.selectItem(ALGEBRACUS.R1_ELLIPSIS_ICON, ALGEBRACUS.R1_DD_MV)    
-        element = self.el_get(ALGEBRACUS.R1_MV_DD_R2)
-        element.location_once_scrolled_into_view
-        time.sleep(1)
-        self.el_click(ALGEBRACUS.R1_MV_DD_R5)
-        time.sleep(3)
-        self.el_get(ALGEBRACUS.CHAP3_TITLE_NAME).location_once_scrolled_into_view
-        time.sleep(1)
-        self.el_click(ALGEBRACUS.CHAP5_EXPAND_TOGGLE_EXPANDED)
-        time.sleep(1)
-        # self.el_click(ALGEBRACUS.CHAP5_EXPAND_TOGGLE)
-        chap1_new_reads = self.el_get_all(ALGEBRACUS.CHAP1_EXPAND_ALL_READS)
-        chap1_after_move_reads = []
-        for reads in chap1_new_reads:
-            chap1_after_move_reads.append(reads.text)
-        print(f'After Read moved chap1: {chap1_after_move_reads}')
-        time.sleep(2)
-        self.el_get(ALGEBRACUS.TOC_TEXT1).location_once_scrolled_into_view
-        time.sleep(1)
-        self.el_click(ALGEBRACUS.CHAP1_EXPAND_TOGGLE_EXPANDED)
-        self.el_click(ALGEBRACUS.CHAP5_EXPAND_TOGGLE)
-        chap5_new_reads = self.el_get_all(ALGEBRACUS.CHAP5_EXPAND_ALL_READS)
-        chap5_after_move_reads = []
-        for reads in chap5_new_reads:
-            chap5_after_move_reads.append(reads.text)
-        print(f'After Read moved chap5: {chap5_after_move_reads}')
-        time.sleep(2)
-        read_from_chap1 = set(chap1_before_move_reads).symmetric_difference(set(chap1_after_move_reads))
-        read_to_chap5 = set(chap5_after_move_reads).symmetric_difference(set(chap5_before_move_reads))
-        
-        return read_from_chap1 == read_to_chap5
-        
-        
-        
-       
-        
+    
         
         
                        
