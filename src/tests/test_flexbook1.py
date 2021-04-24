@@ -39,6 +39,30 @@ class TestFlexBook1Assert(unittest.TestCase):
         print(find_user_name.text)
         assert "SHOPANA" in find_user_name.text
 
+    def test_pageText(self):
+        self.driver.get("https://www.ck12.org/fbbrowse/")
+        text_present = FlexPage(self.driver)
+        actual_txt = text_present.check_text()
+        expected_txt = FlexbookPageLocators.TEXT_AVAILABLE
+        for each in actual_txt:
+            self.assertIn(each, expected_txt)
+
+    def test_optionText(self):
+        self.driver.get("https://www.ck12.org/fbbrowse/")
+        text_present = FlexPage(self.driver)
+        actual_txt = text_present.check_textInOptions()
+        expected_txt = FlexbookPageLocators.OPTIONS_TXT
+        for each in actual_txt:
+            self.assertIn(each, expected_txt)
+
+    def test_image(self):
+        self.driver.get("https://www.ck12.org/fbbrowse/")
+        image_present = FlexPage(self.driver)
+        actual_img_src = image_present.check_image()
+        expected_img_src = FlexbookPageLocators.IMAGE_SRC
+        for each in actual_img_src:
+            self.assertIn(each, expected_img_src)
+
     def test_flexbook_page(self):
 
         # Selecting flexbook from explore
@@ -61,7 +85,7 @@ class TestFlexBook1Assert(unittest.TestCase):
     def test_flexbook_selectOptions(self, lang, sub, grade, title):
         # Selecting the dropdown - Language, Subject, Grade and check for the items are present in Title
         self.driver.get(
-            "https://www.ck12.org/fbbrowse/?_ga=2.236491137.14732433.1612994297-1650535856.1612577864")
+            "https://www.ck12.org/fbbrowse/")
         fbselect = FlexPage(self.driver)
         words = fbselect.selectOptions(lang, sub, grade)
         newTitle = fbselect.el_get_title(title)
