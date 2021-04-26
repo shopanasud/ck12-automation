@@ -80,6 +80,7 @@ class BasePage(object):
         action = ActionChains(self.driver)
         action.click_and_hold(drag).move_to_element(
             drop).release(drop).perform()
+        # action.drag_and_drop(drag, drop).perform()
         time.sleep(5)
 
     def switch_frame(self, by_locator):
